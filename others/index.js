@@ -35,3 +35,4 @@ const fs = require('fs');
 // Check if the file is readable - fs.constants.R_OK
 // Check if the file is writable - fs.constants.W_OK
 // Check if the file is readable and writable - constants.R_OK | constants.W_OK
+
