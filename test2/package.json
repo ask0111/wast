@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node expresswithmongoose/src/ui/index.js",
-    "dev": "nodemon expresswithmongoose/src/ui/index.js"
+    "start": "node hbswithmongoose/src/ui/app.js",
+    "dev": "nodemon hbswithmongoose/src/ui/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "hbs": "^4.2.0",
     "mongoose": "^7.0.0",
