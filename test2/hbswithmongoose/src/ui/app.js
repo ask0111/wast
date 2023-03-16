@@ -21,6 +21,6 @@ app.use(express.json());
 
 
 
-app.listen(port , (err)=>{
+app.listen(port, (err)=>{
     console.log(err);
 })
