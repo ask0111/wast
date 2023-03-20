@@ -1,5 +1,7 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const schema = mongoose.Schema({
     email: {
@@ -33,9 +35,28 @@ const schema = mongoose.Schema({
     check: {
         type: Boolean,
         required: true
-    }
+    },
+    tokens: [{ 
+        token: {
+        type: String,
+        required: true
+    }}]
 })
 
+// console.log(process.env.SECRET_KEY)
+
+schema.methods.generateAuthToken = async function(){
+    try {
+        const token = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY);
+        // console.log(token, this)
+        this.tokens = this.tokens.concat({token: token})
+        await this.save();
+        // console.log(token, this)
+        return token;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 schema.pre('save', async function(next){
     console.log(`Before hashing password ${this.password}`)

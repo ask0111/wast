@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const UserCollection = require('../db/schema');
 const bcrypt = require('bcryptjs');
+const auth = require('../db/midlebarhandler/auth')
 
 
-router.get('/', (req, res)=>{
+router.get('/', auth, (req, res)=>{
+    console.log(`This is My cookies - ${req.cookies}`)
     res.render('home');
 
 })
+
 router.get('/login', (req, res)=>{
     res.render('login');
 })
@@ -47,16 +50,20 @@ router.post('/register', async (req, res)=>{
         const user = new UserCollection({
             email: req.body.email,
             password: req.body.password,
-            addr: req.body.add,
-            anotheraddr: req.body.anotheradd,
+            add: req.body.add,
+            anotheradd: req.body.anotheradd,
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip,
             check: req.body.check == 'on' ? true : false
         });
 
+        const token = await user.generateAuthToken();
 
-        // const registered = await user.save();
+        res.cookie('jwt', token, { expires: new Date(Date.now() + 300000), httpOnly: true});
+
+        // console.log(token, 'kk')
+        const registered = await user.save();
         res.status(201).render('home')
         console.log(registered)
 
@@ -64,6 +71,23 @@ router.post('/register', async (req, res)=>{
         res.status(404).send("Error...")
     }
 })
+
+
+
+// const jwt = require('jsonwebtoken');
+
+// const createtoken = async ()=>{
+//     const token = await jwt.sign('6409cd31ebf0e81d3f098f9e', 'iamhariomfromashoknagarmadhyaprades');
+
+//     console.log(token)
+//     const userVer = await jwt.verify(token, 'iamhariomfromashoknagarmadhyaprades');
+//     console.log(userVer)
+
+// }
+
+
+// createtoken();
+
 
 
 
