@@ -4,11 +4,9 @@ const UserCollection = require('../db/schema');
 const bcrypt = require('bcryptjs');
 const auth = require('../db/midlebarhandler/auth')
 
-
 router.get('/', auth, (req, res)=>{
     console.log(`This is My cookies - ${req.cookies}`)
     res.render('home');
-
 })
 
 router.get('/login', (req, res)=>{

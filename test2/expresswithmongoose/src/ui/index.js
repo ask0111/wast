@@ -9,7 +9,6 @@ app.use(express.json())
 app.use(router);
 
 
-
 app.listen(port, (err)=>{
     if(err){
         throw new console.log(err);
