@@ -72,19 +72,19 @@ router.post('/register', async (req, res)=>{
 
 
 
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-// const createtoken = async ()=>{
-//     const token = await jwt.sign('6409cd31ebf0e81d3f098f9e', 'iamhariomfromashoknagarmadhyaprades');
+const createtoken = async ()=>{
+    const token = await jwt.sign('6409cd31ebf0e81d3f098f9e', 'iamhariomfromashoknagarmadhyaprades');
 
-//     console.log(token)
-//     const userVer = await jwt.verify(token, 'iamhariomfromashoknagarmadhyaprades');
-//     console.log(userVer)
+    console.log(token)
+    const userVer = await jwt.verify(token, 'iamhariomfromashoknagarmadhyaprades');
+    console.log(userVer)
 
-// }
+}
 
 
-// createtoken();
+createtoken();
 
 
 
