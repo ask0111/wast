@@ -15,7 +15,7 @@ app.set('view engine', 'hbs');
 app.set('views', viewPath);
 hbs.registerPartials(partialPath);
 
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
 app.use(router);
 app.use(express.json());
 app.use(cookieParser());

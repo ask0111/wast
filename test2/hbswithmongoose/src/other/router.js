@@ -55,7 +55,6 @@ router.post('/register', async (req, res)=>{
             zip: req.body.zip,
             check: req.body.check == 'on' ? true : false
         });
-
         const token = await user.generateAuthToken();
 
         res.cookie('jwt', token, { expires: new Date(Date.now() + 300000), httpOnly: true});
@@ -80,7 +79,6 @@ const createtoken = async ()=>{
     console.log(token)
     const userVer = await jwt.verify(token, 'iamhariomfromashoknagarmadhyaprades');
     console.log(userVer)
-
 }
 
 
